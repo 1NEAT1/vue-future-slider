@@ -1,0 +1,45 @@
+{
+  "name": "vue-future-slider",
+  "description": "A simple future slider",
+  "author": {
+    "name": "NEATweb",
+    "email": "s.moldavsky98@gmail.com"
+  },
+  "version": "1.0.1",
+  "private": false,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-library": "vue-cli-service build --target lib --name vue-future-slider ./src/install.js",
+    "lint": "vue-cli-service lint"
+  },
+  "main": "./dist/vue-future-slider.common.js",
+  "files": [
+    "dist/*"
+  ],
+  "repository": "https://github.com/1NEAT1/vue-future-slider",
+  "bugs": "https://github.com/1NEAT1/vue-future-slider/issues",
+  "license": "MIT",
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "vue": "^2.6.14"
+  },
+  "keywords": [
+    "vue.js",
+    "slider",
+    "carousel",
+    "responsive"
+  ],
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
