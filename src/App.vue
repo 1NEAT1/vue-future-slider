@@ -2,17 +2,7 @@
   <div class="container">
     <h1>Vue Future Slider</h1>
     <div class="slider">
-      <VueFutureSlider :items="images">
-
-        <template slot="arrow-left">
-          <!-- div, img or svg -->
-        </template>
-
-        <template slot="arrow-right">
-          <!-- div, img or svg -->
-        </template>
-
-      </VueFutureSlider>
+      <VueFutureSlider :items="images"/>
     </div>
   </div>
 </template>
@@ -30,12 +20,7 @@ export default {
         {image: 'https://dummyimage.com/1000x500/000e4f/000000'},
         {image: 'https://dummyimage.com/1000x500/121e1f/000000'},
         {image: 'https://dummyimage.com/1000x500/121e1f/b00000'}
-      ],
-      settings: {
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: true
-      }
+      ]
     }
   }
 }

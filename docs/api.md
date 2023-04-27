@@ -61,6 +61,7 @@ export default {
 | slidesToShow  | number of slides to show       | number  | -      | 1       | 1   | -   |
 | speed         | slider scrolling in seconds    | number  | -      | 0.5     | 1   | -   |
 | loadingByOne  | uploading images one by one    | boolean | -      | false   | -   | -   |
+| cssBorder     | border radius image in px      | number  |        | 0       | 0   | -   |
 
 ## Slots
 

@@ -4,16 +4,14 @@
     <div class="future-slider" ref="slider">
 
       <div class="future-slider-body" ref="body"
-           :style="{
-                   left: sliderOffsetLeft + 'px',
-                   transition: 'all ' + speed + 's ease'}">
+           :style="{left: left, transition: transition}">
 
         <div class="future-slide"
              v-for="(item, index) in _items" :key="index"
-             :style="{width: sliderOffsetWidth / slideToShow + 'px'}">
+             :style="{width: width + 'px'}">
 
           <img :src="item[field]" alt=""
-               :style="{width: sliderOffsetWidth / slideToShow + 'px'}">
+               :style="{width: width, 'border-radius': border}">
 
         </div>
 
@@ -42,7 +40,7 @@
 <script>
 import Arrows from './arrows.vue';
 import LoadingSpinner from './loading.vue';
-import { props } from '@/core/props'
+import {props} from '@/core/props'
 
 export default {
   name: 'VueFutureSlider',
@@ -68,6 +66,18 @@ export default {
       } else {
         return this.items
       }
+    },
+    left: function () {
+      return this.sliderOffsetLeft + 'px'
+    },
+    border: function () {
+      return this.cssBorder + 'px'
+    },
+    transition: function () {
+      return 'all ' + this.speed + 's ease'
+    },
+    width: function () {
+      return this.sliderOffsetWidth / this.slideToShow + 'px'
     },
   },
   mounted() {

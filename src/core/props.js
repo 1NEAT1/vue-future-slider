@@ -39,5 +39,12 @@ export const props = {
     loadingByOne: {
         type: Boolean,
         default: false,
+    },
+    cssBorder: {
+        type: Number,
+        default: 0,
+        validator: function (value) {
+            return value >= 0
+        }
     }
 }
