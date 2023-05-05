@@ -8,7 +8,7 @@
 
         <div class="future-slide"
              v-for="(item, index) in _items" :key="index"
-             :style="{width: width + 'px'}">
+             :style="{width}">
 
           <img :src="item[field]" alt=""
                :style="{width: width, 'border-radius': border}">
@@ -134,7 +134,7 @@ export default {
 <style lang="scss" scoped>
 .future-slider-wrapper {
   position: relative;
-  width: 1000px;
+  width: inherit;
   height: inherit;
   max-width: inherit;
   max-height: inherit;
