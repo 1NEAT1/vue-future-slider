@@ -5,7 +5,7 @@
     "name": "NEATweb",
     "email": "s.moldavsky98@gmail.com"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
