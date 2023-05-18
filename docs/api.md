@@ -34,10 +34,24 @@ export default {
     data: function () {
         return {
             images: [
-                {image: 'https://dummyimage.com/1000x500/000/fff'},
-                {image: 'https://dummyimage.com/1000x500/000e4f/000000'},
-                {image: 'https://dummyimage.com/1000x500/121e1f/000000'},
-                {image: 'https://dummyimage.com/1000x500/121e1f/b00000'}
+                {
+                    image: 'https://dummyimage.com/1000x500/000/fff',
+                    link: 'https://github.com/1NEAT1/vue-future-slider',
+                    target: true,
+                },
+                {
+                    image: 'https://dummyimage.com/1000x500/000e4f/000000',
+                    link: 'https://github.com/1NEAT1/vue-future-slider',
+                    target: false,
+                },
+                {
+                    image: 'https://dummyimage.com/1000x500/121e1f/000000',
+                    link: 'https://github.com/1NEAT1/vue-future-slider',
+                    target: true,
+                },
+                {
+                    image: 'https://dummyimage.com/1000x500/121e1f/b00000'
+                }
             ],
             settings: {
                 autoplay: true,
@@ -51,17 +65,18 @@ export default {
 
 ## All props
 
-| Prop name     | Description                    | Type    | Values | Default | Min | Max |
-|---------------|--------------------------------|---------|--------|---------|-----|-----|
-| items         | list with images               | object  | -      | {}      | -   | -   |
-| field         | name field in list images      | string  | -      | image   | -   | -   |
-| arrows        | enables prev/next arrows       | boolean | -      | true    | -   | -   |
-| autoplay      | enables autoplay               | boolean | -      | false   | -   | -   |
-| autoplaySpeed | autoplay speed in milliseconds | number  | -      | 3000    | 500 | -   |
-| slidesToShow  | number of slides to show       | number  | -      | 1       | 1   | -   |
-| speed         | slider scrolling in seconds    | number  | -      | 0.5     | 1   | -   |
-| loadingByOne  | uploading images one by one    | boolean | -      | false   | -   | -   |
-| cssBorder     | border radius image in px      | number  |        | 0       | 0   | -   |
+| Prop name     | Description                     | Type    | Values | Default | Min | Max |
+|---------------|---------------------------------|---------|--------|---------|-----|-----|
+| items         | list with images                | object  | -      | {}      | -   | -   |
+| field         | name field in list images       | string  | -      | image   | -   | -   |
+| arrows        | enables prev/next arrows        | boolean | -      | true    | -   | -   |
+| autoplay      | enables autoplay                | boolean | -      | false   | -   | -   |
+| autoplaySpeed | autoplay speed in milliseconds  | number  | -      | 3000    | 500 | -   |
+| slidesToShow  | number of slides to show        | number  | -      | 1       | 1   | -   |
+| speed         | slider scrolling in seconds     | number  | -      | 0.5     | 1   | -   |
+| infinite      | infinitely wrap around contents | boolean | -      | false   | -   | -   |
+| loadingByOne  | uploading images one by one     | boolean | -      | false   | -   | -   |
+| cssBorder     | border radius image in px       | number  |        | 0       | 0   | -   |
 
 ## Slots
 

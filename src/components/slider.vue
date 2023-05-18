@@ -1,40 +1,44 @@
 <template>
-  <div class="future-slider-wrapper">
+    <div class="future-slider-wrapper">
 
-    <div class="future-slider" ref="slider">
+        <div class="future-slider" ref="slider">
 
-      <div class="future-slider-body" ref="body"
-           :style="{left: left, transition: transition}">
+            <div class="future-slider-body" ref="body"
+                 :style="{left: left, transition: transition}">
 
-        <div class="future-slide"
-             v-for="(item, index) in _items" :key="index"
-             :style="{width}">
 
-          <img :src="item[field]" alt=""
-               :style="{width: width, 'border-radius': border}">
+                <div class="future-slide"
+                     v-for="(item, index) in _items" :key="index"
+                     :style="{width}">
+
+                    <component :is="item.link ? 'a' : 'div'" :href="item.link"
+                               :target="item.target ? '_blank' : '_self'">
+                        <img :src="item[field]" alt=""
+                             :style="{width: width, 'border-radius': border}">
+                    </component>
+
+                </div>
+
+            </div>
 
         </div>
 
-      </div>
+        <arrows
+                v-if="arrows && sliderAllCount > 1"
+                @click-left="prevSlide"
+                @click-right="nextSlide">
+
+            <template slot="arrow-left">
+                <slot name="arrow-left"/>
+            </template>
+
+            <template slot="arrow-right">
+                <slot name="arrow-right"/>
+            </template>
+
+        </arrows>
 
     </div>
-
-    <arrows
-        v-if="arrows && sliderAllCount > 1"
-        @click-left="prevSlide"
-        @click-right="nextSlide">
-
-      <template slot="arrow-left">
-        <slot name="arrow-left"/>
-      </template>
-
-      <template slot="arrow-right">
-        <slot name="arrow-right"/>
-      </template>
-
-    </arrows>
-
-  </div>
 </template>
 
 <script>
@@ -43,91 +47,90 @@ import LoadingSpinner from './loading.vue';
 import {props} from '@/core/props'
 
 export default {
-  name: 'VueFutureSlider',
-  components: {LoadingSpinner, Arrows},
-  props,
-  data: function () {
-    return {
-      sliderAllCount: 0,
-      sliderActive: 1,
-      sliderOffsetLeft: 0,
-      sliderOffsetStep: 0,
-      sliderOffsetWidth: 0,
-      list: [],
-      limit: this.slideToShow,
-      loading: true,
-      isPressed: false,
-    }
-  },
-  computed: {
-    _items: function () {
-      if (this.loadingByOne) {
-        return this.items.slice(0, this.limit)
-      } else {
-        return this.items
-      }
+    name: 'VueFutureSlider',
+    components: {LoadingSpinner, Arrows},
+    props,
+    data: function () {
+        return {
+            sliderAllCount: 0,
+            sliderActive: 1,
+            sliderOffsetLeft: 0,
+            sliderOffsetStep: 0,
+            sliderOffsetWidth: 0,
+            list: [],
+            limit: this.slideToShow,
+            loading: true,
+            isPressed: false,
+        }
     },
-    left: function () {
-      return this.sliderOffsetLeft + 'px'
+    computed: {
+        _items: function () {
+            if (this.loadingByOne) {
+                return this.items.slice(0, this.limit)
+            } else {
+                return this.items
+            }
+        },
+        left: function () {
+            return this.sliderOffsetLeft + 'px'
+        },
+        border: function () {
+            return this.cssBorder + 'px'
+        },
+        transition: function () {
+            return 'all ' + this.speed + 's ease'
+        },
+        width: function () {
+            return this.sliderOffsetWidth / this.slideToShow + 'px'
+        },
     },
-    border: function () {
-      return this.cssBorder + 'px'
-    },
-    transition: function () {
-      return 'all ' + this.speed + 's ease'
-    },
-    width: function () {
-      return this.sliderOffsetWidth / this.slideToShow + 'px'
-    },
-  },
-  mounted() {
-    this.init()
+    mounted() {
+        this.init()
 
-    window.addEventListener('resize', () => {
-      this.init()
-    })
+        window.addEventListener('resize', () => {
+            this.init()
+        })
 
-    if (this.autoplay) {
-      setInterval(() => {
-        this.nextSlide()
-      }, this.autoplaySpeed)
-    }
-  },
-  methods: {
-    init: function () {
-      let slider = this.$refs.slider
+        if (this.autoplay) {
+            setInterval(() => {
+                this.nextSlide()
+            }, this.autoplaySpeed)
+        }
+    },
+    methods: {
+        init: function () {
+            let slider = this.$refs.slider
 
-      if (slider) {
-        this.sliderOffsetWidth = slider.offsetWidth
-        this.sliderOffsetStep = slider.clientWidth
-        this.sliderAllCount = Math.ceil(this.items.length / this.slideToShow)
-      }
-    },
-    openSlide: function (id) {
-      if (id > 0 && id <= this.sliderAllCount) {
-        this.sliderActive = id
-        // Move slide
-        this.sliderOffsetLeft = -(this.sliderActive * this.sliderOffsetStep - this.sliderOffsetStep)
-      }
-    },
-    // Следующий слайд
-    nextSlide: function () {
-      if (this.sliderActive < this.sliderAllCount) {
-        this.limit += this.slideToShow
-        this.sliderActive += 1
-        this.openSlide(this.sliderActive)
-      } else {
-        this.openSlide(1)
-      }
-    },
-    // Предыдущий слайд
-    prevSlide: function () {
-      if (this.sliderActive > 1) {
-        this.sliderActive -= 1
-        this.openSlide(this.sliderActive)
-      }
+            if (slider) {
+                this.sliderOffsetWidth = slider.offsetWidth
+                this.sliderOffsetStep = slider.clientWidth
+                this.sliderAllCount = Math.ceil(this.items.length / this.slideToShow)
+            }
+        },
+        openSlide: function (id) {
+            if (id > 0 && id <= this.sliderAllCount) {
+                this.sliderActive = id
+                this.sliderOffsetLeft = -(this.sliderActive * this.sliderOffsetStep - this.sliderOffsetStep)
+            }
+        },
+        nextSlide: function () {
+            if (this.sliderActive < this.sliderAllCount) {
+                this.limit += this.slideToShow
+                this.sliderActive += 1
+                this.openSlide(this.sliderActive)
+            } else if (this.infinite) {
+                this.openSlide(1)
+            }
+        },
+        prevSlide: function () {
+            if (this.sliderActive > 1) {
+                this.sliderActive -= 1
+                this.openSlide(this.sliderActive)
+            } else if (this.infinite) {
+                this.openSlide(this.sliderAllCount)
+            }
+        }
     }
-  }
 }
 </script>
 
@@ -173,7 +176,6 @@ export default {
           height: inherit;
           max-width: inherit;
           max-height: inherit;
-          pointer-events: none;
         }
       }
     }

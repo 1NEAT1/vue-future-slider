@@ -35,10 +35,24 @@ export default {
     data: function () {
         return {
             images: [
-                {image: 'https://dummyimage.com/1000x500/000/fff'},
-                {image: 'https://dummyimage.com/1000x500/000e4f/000000'},
-                {image: 'https://dummyimage.com/1000x500/121e1f/000000'},
-                {image: 'https://dummyimage.com/1000x500/121e1f/b00000'}
+                {
+                    image: 'https://dummyimage.com/1000x500/000/fff',
+                    link: 'https://github.com/1NEAT1/vue-future-slider',
+                    target: true,
+                },
+                {
+                    image: 'https://dummyimage.com/1000x500/000e4f/000000',
+                    link: 'https://github.com/1NEAT1/vue-future-slider',
+                    target: false,
+                },
+                {
+                    image: 'https://dummyimage.com/1000x500/121e1f/000000',
+                    link: 'https://github.com/1NEAT1/vue-future-slider',
+                    target: true,
+                },
+                {
+                    image: 'https://dummyimage.com/1000x500/121e1f/b00000'
+                }
             ]
         }
     }

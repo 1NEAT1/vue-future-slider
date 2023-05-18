@@ -36,6 +36,10 @@ export const props = {
             return value >= 0.1
         }
     },
+    infinite: {
+        type: Boolean,
+        default: false,
+    },
     loadingByOne: {
         type: Boolean,
         default: false,
